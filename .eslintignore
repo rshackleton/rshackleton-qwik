@@ -32,3 +32,4 @@ vite.config.ts
 *.spec.tsx
 *.spec.ts
 tailwind.config.js
+*.snap
