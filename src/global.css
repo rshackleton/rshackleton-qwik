@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    @apply h-full;
+  }
+}
+
+@layer components {
+  .site-container {
+    @apply mx-auto max-w-screen-2xl px-8 w-full;
+  }
+}

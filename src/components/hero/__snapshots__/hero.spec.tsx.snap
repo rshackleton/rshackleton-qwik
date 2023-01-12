@@ -1,0 +1,3 @@
+// Vitest Snapshot v1
+
+exports[`[Hero Component]: Renders without error 1`] = `"<host q:version=\\"0.16.2\\" q:container=\\"resumed\\" q:render=\\"dom-dev\\"><!--qv q:key=bfJE:eC_0 data-qrl=Hero_component_bfJE09oKJq8--><section><div class=\\"site-container py-4\\"><h1>Hello World</h1></div></section><!--/qv--></host>"`;
