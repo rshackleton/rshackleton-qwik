@@ -1,34 +1,14 @@
-import { component$, useStylesScoped$ } from '@builder.io/qwik';
-import { QwikLogo } from '../icons/qwik';
-import styles from './header.css?inline';
+import { component$ } from '@builder.io/qwik';
+import { Link } from '@builder.io/qwik-city';
 
-export default component$(() => {
-  useStylesScoped$(styles);
-
+export const Header = component$(() => {
   return (
     <header>
-      <div class="logo">
-        <a href="https://qwik.builder.io/" target="_blank" title="qwik">
-          <QwikLogo />
-        </a>
+      <div class="mx-auto max-w-screen-2xl px-8 py-8">
+        <Link class="text-lg underline underline-offset-2" href="/">
+          rshackleton.co.uk
+        </Link>
       </div>
-      <ul>
-        <li>
-          <a href="https://qwik.builder.io/docs/components/overview/" target="_blank">
-            Docs
-          </a>
-        </li>
-        <li>
-          <a href="https://qwik.builder.io/examples/introduction/hello-world/" target="_blank">
-            Examples
-          </a>
-        </li>
-        <li>
-          <a href="https://qwik.builder.io/tutorial/welcome/overview/" target="_blank">
-            Tutorials
-          </a>
-        </li>
-      </ul>
     </header>
   );
 });
