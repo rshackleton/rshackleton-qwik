@@ -17,28 +17,24 @@ export type ArticlesPageData = {
 };
 
 export const getArticlesData = loader$(async (): Promise<ArticlesPageData | null> => {
-  try {
-    const response = await deliveryClient
-      .items()
-      .queryConfig({ usePreviewMode: false }) // TODO: Add preview support
-      .type('article')
-      .orderByDescending('elements.date')
-      .toPromise();
+  const response = await deliveryClient
+    .items()
+    .queryConfig({ usePreviewMode: false }) // TODO: Add preview support
+    .type('article')
+    .orderByDescending('elements.date')
+    .toPromise();
 
-    const items = response.data.items;
+  const items = response.data.items;
 
-    return {
-      items: items.map((item) => ({
-        id: item.system.codename,
-        date: item.elements.date.value,
-        summary: item.elements.summary.value,
-        title: item.elements.title.value,
-        url: `/articles/${item.elements.slug.value}`,
-      })),
-    };
-  } catch (error) {
-    return null;
-  }
+  return {
+    items: items.map((item) => ({
+      id: item.system.codename,
+      date: item.elements.date.value,
+      summary: item.elements.summary.value,
+      title: item.elements.title.value,
+      url: `/articles/${item.elements.slug.value}`,
+    })),
+  };
 });
 
 const ArticlesPage = component$(() => {
