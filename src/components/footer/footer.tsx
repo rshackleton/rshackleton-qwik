@@ -2,12 +2,12 @@ import { component$ } from '@builder.io/qwik';
 
 export type FooterProps = {};
 
-export const Footer = component$(() => {
+export const Footer = component$<FooterProps>(() => {
   return (
-    <footer class="bg-slate-100 text-gray-900 dark:bg-slate-800 dark:text-gray-100">
-      <div class="site-container py-4">
-        <p class="text-sm">&copy; Richard Shackleton</p>
-      </div>
+    <footer class="flex place-content-center place-items-center items-center px-4 py-8">
+      <p class="text-neutral-500 text-sm">
+        &copy; Richard Shackleton {new Date().getUTCFullYear()}
+      </p>
     </footer>
   );
 });
