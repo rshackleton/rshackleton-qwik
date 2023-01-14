@@ -1,7 +1,8 @@
-import { component$, Resource } from '@builder.io/qwik';
-import type { DocumentHead, RequestHandler } from '@builder.io/qwik-city';
-import { useEndpoint } from '@builder.io/qwik-city';
+import { component$ } from '@builder.io/qwik';
+import type { DocumentHead } from '@builder.io/qwik-city';
+import { loader$ } from '@builder.io/qwik-city';
 import { formatDate, formatDateISO } from '~/helpers/date';
+import deliveryClient from '~/kontent/client';
 
 export type ArticlePageData = {
   content: string;
@@ -9,58 +10,57 @@ export type ArticlePageData = {
   title: string;
 };
 
-export type ArticlePageProps = {};
+export const getArticleData = loader$(async (event): Promise<ArticlePageData | null> => {
+  try {
+    const slug = event.params.slug;
 
-export const onGet: RequestHandler<ArticlePageData> = () => {
-  return {
-    content: `
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    `,
-    date: `2019-11-29`,
-    title: `Gatsby Cloud & Kontent.ai - A match made in heaven?`,
-  };
-};
+    const response = await deliveryClient
+      .items()
+      .queryConfig({ usePreviewMode: false }) // TODO: Add preview support
+      .type('article')
+      .equalsFilter('elements.slug', slug)
+      .limitParameter(1)
+      .toPromise();
 
-const ArticlePage = component$<ArticlePageProps>(() => {
-  const articleData = useEndpoint<ArticlePageData>();
+    const item = response.data.items[0];
+
+    return {
+      content: item.elements.body.value, // TODO: handle html parsing/replacement somehow
+      date: item.elements.date.value,
+      title: item.elements.title.value,
+    };
+  } catch (error) {
+    return null;
+  }
+});
+
+const ArticlePage = component$(() => {
+  const model = getArticleData.use();
+
+  if (!model.value) {
+    return null;
+  }
 
   return (
-    <Resource
-      value={articleData}
-      onResolved={(model) => {
-        return (
-          <>
-            {model && (
-              <>
-                <div class="mx-auto max-w-3xl px-4 text-center">
-                  <h1 class="pb-4 font-bold text-2xl">{model.title}</h1>
-                  <div class="pb-8 font-medium text-lg">
-                    <time dateTime={formatDateISO(model.date)}>{formatDate(model.date)}</time>
-                  </div>
-                </div>
+    <div class="mx-auto max-w-3xl px-4">
+      <div class="mb-8 text-center">
+        <h1 class="mb-4 font-bold text-2xl">{model.value.title}</h1>
+        <div class="font-medium text-lg">
+          <time dateTime={formatDateISO(model.value.date)}>{formatDate(model.value.date)}</time>
+        </div>
+      </div>
 
-                <div class="mx-auto max-w-3xl px-4">
-                  <div class="rich-text" dangerouslySetInnerHTML={model.content}></div>
-                </div>
-              </>
-            )}
-          </>
-        );
-      }}
-    />
+      <div class="rich-text" dangerouslySetInnerHTML={model.value.content}></div>
+    </div>
   );
 });
 
 export default ArticlePage;
 
-export const head: DocumentHead = {
-  title: 'Article Page',
+export const head: DocumentHead = ({ getData }) => {
+  const data = getData(getArticleData);
+
+  return {
+    title: data?.title ?? 'Could not find article',
+  };
 };

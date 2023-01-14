@@ -42,3 +42,6 @@ storybook-static/
 
 # Vercel
 .vercel
+
+# Env Vars
+.env.local

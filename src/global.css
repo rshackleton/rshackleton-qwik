@@ -21,7 +21,7 @@
 /* Custom rich text */
 @layer base {
   .rich-text {
-    @apply text-left text-lg;
+    @apply text-lg text-left;
 
     > * {
       @apply mb-8;
@@ -33,21 +33,17 @@
     h4,
     h5,
     h6 {
-      @apply bg-gradient-to-r from-primary-900 to-primary-700 bg-clip-text font-bold text-transparent text-xl;
+      @apply text-xl font-bold text-transparent bg-gradient-to-r from-primary-900 to-primary-700 bg-clip-text;
     }
 
     p {
-      a {
-        @apply border-b-2 border-transparent bg-gradient-to-r from-primary-900 to-primary-700 bg-clip-text font-medium text-transparent transition hover:border-primary-500;
-      }
-
       b,
       strong {
         @apply font-medium;
       }
 
       code {
-        @apply rounded bg-neutral-200 p-1 font-mono tracking-wider text-neutral-600 text-base;
+        @apply p-1 font-mono text-base tracking-wider rounded bg-neutral-200 text-neutral-600;
       }
     }
 
@@ -65,10 +61,10 @@
     }
 
     pre {
-      @apply overflow-x-auto rounded bg-neutral-700 p-4 font-mono text-neutral-200 text-base;
+      @apply p-4 overflow-x-auto font-mono text-base rounded bg-neutral-700 text-neutral-200;
 
       &::-webkit-scrollbar {
-        @apply h-2 w-2;
+        @apply w-2 h-2;
       }
 
       &::-webkit-scrollbar-track {
@@ -77,6 +73,10 @@
       &::-webkit-scrollbar-thumb {
         @apply rounded bg-neutral-400;
       }
+    }
+
+    a {
+      @apply font-medium text-transparent transition border-b-2 border-transparent bg-gradient-to-r from-primary-900 to-primary-700 bg-clip-text hover:border-primary-500;
     }
   }
 }
