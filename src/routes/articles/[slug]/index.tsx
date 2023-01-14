@@ -51,6 +51,6 @@ export const head: DocumentHead = ({ getData }) => {
   const data = getData(getArticleData);
 
   return {
-    title: data?.title ?? 'Could not find article',
+    title: `${data?.title ?? 'Article Not Found'} - Richard Shackleton`,
   };
 };

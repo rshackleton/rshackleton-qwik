@@ -9,11 +9,5 @@ const IndexRoute = component$(() => {
 export default IndexRoute;
 
 export const head: DocumentHead = {
-  title: 'Hello World',
-  meta: [
-    {
-      name: 'description',
-      content: 'Hello world description',
-    },
-  ],
+  title: 'Richard Shackleton - Full Stack Developer',
 };

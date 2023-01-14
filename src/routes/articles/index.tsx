@@ -70,5 +70,5 @@ const ArticlesPage = component$(() => {
 export default ArticlesPage;
 
 export const head: DocumentHead = {
-  title: 'Articles',
+  title: 'Blog - Richard Shackleton',
 };
