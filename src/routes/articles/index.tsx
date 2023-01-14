@@ -16,14 +16,11 @@ export type ArticlesPageData = {
 };
 
 export const getArticlesData = loader$(async (): Promise<ArticlesPageData | null> => {
-  const res = await fetch(
-    `https://deliver.kontent.ai/${
-      import.meta.env.VITE_KONTENT_PROJECT_ID
-    }/items?system.type=article&order=elements.date[desc]&language=default`,
-  );
+  // prettier-ignore
+  const url = `https://deliver.kontent.ai/${import.meta.env.VITE_KONTENT_PROJECT_ID}/items?system.type=article&order=elements.date[desc]&language=default`;
 
+  const res = await fetch(url);
   const resBody = await res.json();
-
   const items = resBody.items;
 
   return {

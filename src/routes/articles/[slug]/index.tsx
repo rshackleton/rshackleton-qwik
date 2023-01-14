@@ -2,7 +2,6 @@ import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { loader$ } from '@builder.io/qwik-city';
 import { formatDate, formatDateISO } from '~/helpers/date';
-import deliveryClient from '~/kontent/client';
 
 export type ArticlePageData = {
   content: string;
@@ -11,27 +10,18 @@ export type ArticlePageData = {
 };
 
 export const getArticleData = loader$(async (event): Promise<ArticlePageData | null> => {
-  try {
-    const slug = event.params.slug;
+  // prettier-ignore
+  const url = `https://deliver.kontent.ai/${import.meta.env.VITE_KONTENT_PROJECT_ID}/items?system.type=article&elements.slug[eq]=${event.params.slug}&limit=1&language=default`;
 
-    const response = await deliveryClient
-      .items()
-      .queryConfig({ usePreviewMode: false }) // TODO: Add preview support
-      .type('article')
-      .equalsFilter('elements.slug', slug)
-      .limitParameter(1)
-      .toPromise();
+  const res = await fetch(url);
+  const resBody = await res.json();
+  const item = resBody.items[0];
 
-    const item = response.data.items[0];
-
-    return {
-      content: item.elements.body.value, // TODO: handle html parsing/replacement somehow
-      date: item.elements.date.value,
-      title: item.elements.title.value,
-    };
-  } catch (error) {
-    return null;
-  }
+  return {
+    content: item.elements.body.value, // TODO: handle html parsing/replacement somehow
+    date: item.elements.date.value,
+    title: item.elements.title.value,
+  };
 });
 
 const ArticlePage = component$(() => {
