@@ -2,7 +2,6 @@ import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { Link, loader$ } from '@builder.io/qwik-city';
 import { formatDate, formatDateISO } from '~/helpers/date';
-import deliveryClient from '~/kontent/client';
 
 export type ArticleItemData = {
   id: string;
@@ -17,17 +16,18 @@ export type ArticlesPageData = {
 };
 
 export const getArticlesData = loader$(async (): Promise<ArticlesPageData | null> => {
-  const response = await deliveryClient
-    .items()
-    .queryConfig({ usePreviewMode: false }) // TODO: Add preview support
-    .type('article')
-    .orderByDescending('elements.date')
-    .toPromise();
+  const res = await fetch(
+    `https://deliver.kontent.ai/${
+      import.meta.env.VITE_KONTENT_PROJECT_ID
+    }/items?system.type=article&order=elements.date[desc]&language=default`,
+  );
 
-  const items = response.data.items;
+  const resBody = await res.json();
+
+  const items = resBody.items;
 
   return {
-    items: items.map((item) => ({
+    items: items.map((item: any) => ({
       id: item.system.codename,
       date: item.elements.date.value,
       summary: item.elements.summary.value,
