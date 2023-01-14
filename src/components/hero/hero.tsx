@@ -6,7 +6,7 @@ export type HeroProps = {};
 export const Hero = component$<HeroProps>(() => {
   return (
     <section class="relative grid place-content-center place-items-center overflow-hidden py-[8vw]">
-      <div class="site-container relative mx-auto w-full max-w-screen-2xl px-4 text-center">
+      <div class="relative mx-auto w-full max-w-screen-2xl px-4 text-center">
         <h1 class="pb-5 font-bold text-5xl">Full Stack Developer</h1>
         <p class="mx-auto max-w-prose pb-8 text-lg">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt

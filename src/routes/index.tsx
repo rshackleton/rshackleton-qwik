@@ -2,11 +2,11 @@ import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { Hero } from '~/components/hero/hero';
 
-const IndexPage = component$(() => {
+const IndexRoute = component$(() => {
   return <Hero />;
 });
 
-export default IndexPage;
+export default IndexRoute;
 
 export const head: DocumentHead = {
   title: 'Hello World',

@@ -1,3 +1,0 @@
-// Vitest Snapshot v1
-
-exports[`[Header Component]: Renders without error 1`] = `"<host q:version=\\"0.16.2\\" q:container=\\"resumed\\" q:render=\\"dom-dev\\"><!--qv q:key=WmYC:bz_1 data-qrl=QwikCityMockProvider_component_WmYC5H00wtI--><!--qv q:key q:sref=0 q:s--><!--qv q:key=CedV:bz_0 data-qrl=Header_component_CedV26l7xxQ--><header><div class=\\"mx-auto max-w-screen-2xl px-8 py-8\\"><!--qv q:key=8gdL:SN_0 data-qrl=Link_component_8gdLBszqbaM--><a class=\\"text-lg underline underline-offset-2\\" href=\\"/\\" preventdefault:click=\\"\\"><!--qv q:key q:sref=2 q:s-->rshackleton.co.uk<!--/qv--></a><!--/qv--></div></header><!--/qv--><!--/qv--><!--/qv--></host>"`;

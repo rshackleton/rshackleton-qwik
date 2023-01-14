@@ -1,3 +1,0 @@
-// Vitest Snapshot v1
-
-exports[`[Footer Component]: Renders without error 1`] = `"<host q:version=\\"0.16.2\\" q:container=\\"resumed\\" q:render=\\"dom-dev\\"><!--qv q:key=hg9U:yE_0 data-qrl=Footer_component_hg9USy095T4--><footer class=\\"mx-auto max-w-screen-2xl px-8 py-8\\"><p class=\\"text-sm\\">© Richard Shackleton</p></footer><!--/qv--></host>"`;
