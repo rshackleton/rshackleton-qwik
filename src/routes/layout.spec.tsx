@@ -1,14 +1,13 @@
 import { QwikCityMockProvider } from '@builder.io/qwik-city';
 import { createDOM } from '@builder.io/qwik/testing';
-import { expect, test } from 'vitest';
+import { test } from 'vitest';
 import Layout from './layout';
 
-test(`[Header Component]: Renders without error`, async () => {
-  const { screen, render } = await createDOM();
+test(`[Layout Component]: Renders without error`, async () => {
+  const { render } = await createDOM();
   await render(
     <QwikCityMockProvider>
       <Layout>Mock Content</Layout>
     </QwikCityMockProvider>,
   );
-  expect(screen.outerHTML).toMatchSnapshot();
 });

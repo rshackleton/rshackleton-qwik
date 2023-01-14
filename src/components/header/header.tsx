@@ -1,16 +1,16 @@
 import { component$ } from '@builder.io/qwik';
 import { Link } from '@builder.io/qwik-city';
+import { Navigation } from '../navigation/navigation';
 
 export type HeaderProps = {};
 
-export const Header = component$(() => {
+export const Header = component$<HeaderProps>(() => {
   return (
-    <header class="bg-slate-100 text-gray-900 dark:bg-slate-800 dark:text-gray-100">
-      <div class="site-container py-12">
-        <Link class="text-lg underline underline-offset-2" href="/">
-          rshackleton.co.uk
-        </Link>
-      </div>
+    <header class="flex flex-col items-center px-4 py-12 text-neutral-800 text-base">
+      <Link class="inline-block pb-4 font-bold underline-offset-4 text-xl hover:underline" href="/">
+        Richard Shackleton
+      </Link>
+      <Navigation />
     </header>
   );
 });

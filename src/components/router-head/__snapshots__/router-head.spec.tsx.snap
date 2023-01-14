@@ -1,3 +1,0 @@
-// Vitest Snapshot v1
-
-exports[`[Router Head Component]: Renders without error 1`] = `"<host q:version=\\"0.16.2\\" q:container=\\"resumed\\" q:render=\\"dom-dev\\"><!--qv q:key=WmYC:vl_1 data-qrl=QwikCityMockProvider_component_WmYC5H00wtI--><!--qv q:key q:sref=0 q:s--><!--qv q:key=zrbr:vl_0 data-qrl=RouterHead_component_zrbrqoaqXSY--><title></title><link rel=\\"canonical\\" href=\\"http://localhost/\\"><meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\"><link rel=\\"icon\\" type=\\"image/svg+xml\\" href=\\"/favicon.svg\\"><!--/qv--><!--/qv--><!--/qv--></host>"`;
