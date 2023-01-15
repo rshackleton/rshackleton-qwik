@@ -1,19 +1,23 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
-    "skipLibCheck": true,
+    "target": "ES2020",
+    "module": "ES2020",
+    "lib": ["es2020", "DOM", "DOM.Iterable"],
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
     "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "incremental": true,
     "isolatedModules": true,
+    "noEmit": true,
+    "types": ["node", "vite/client"],
     "jsx": "preserve",
-    "incremental": true
+    "paths": {
+      "~/*": ["./*"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
