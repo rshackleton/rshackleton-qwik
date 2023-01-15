@@ -8,7 +8,7 @@ const ArticlesPage = component$<ArticlesPageProps>(() => {
   return (
     <div class="mx-auto max-w-3xl px-4">
       <div class="mx-auto max-w-3xl px-4 text-center">
-        <h1 class="pb-4 font-bold text-2xl">Articles</h1>
+        <h1 class="pb-4 text-2xl font-bold">Articles</h1>
       </div>
 
       <ul class="list-inside list-disc">
