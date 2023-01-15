@@ -1,8 +1,8 @@
 # Build
-/dist
-/lib
-/lib-types
-/server
+/packages/website/dist
+/packages/website/lib
+/packages/website/lib-types
+/packages/website/server
 
 # Development
 node_modules
@@ -42,3 +42,7 @@ storybook-static/
 
 # Vercel
 .vercel
+
+# Env Vars
+.env.local
+.env.*.local

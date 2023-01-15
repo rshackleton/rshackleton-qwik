@@ -33,12 +33,12 @@
     h4,
     h5,
     h6 {
-      @apply bg-gradient-to-r from-primary-900 to-primary-700 bg-clip-text font-bold text-transparent text-xl;
+      @apply from-primary-900 to-primary-700 bg-gradient-to-r bg-clip-text text-xl font-bold text-transparent;
     }
 
     p {
       a {
-        @apply border-b-2 border-transparent bg-gradient-to-r from-primary-900 to-primary-700 bg-clip-text font-medium text-transparent transition hover:border-primary-500;
+        @apply from-primary-900 to-primary-700 hover:border-primary-500 border-b-2 border-transparent bg-gradient-to-r bg-clip-text font-medium text-transparent transition;
       }
 
       b,
@@ -47,7 +47,7 @@
       }
 
       code {
-        @apply rounded bg-neutral-200 p-1 font-mono tracking-wider text-neutral-600 text-base;
+        @apply rounded bg-neutral-200 p-1 font-mono text-base tracking-wider text-neutral-600;
       }
     }
 
@@ -65,7 +65,7 @@
     }
 
     pre {
-      @apply overflow-x-auto rounded bg-neutral-700 p-4 font-mono text-neutral-200 text-base;
+      @apply overflow-x-auto rounded bg-neutral-700 p-4 font-mono text-base text-neutral-200;
 
       &::-webkit-scrollbar {
         @apply h-2 w-2;

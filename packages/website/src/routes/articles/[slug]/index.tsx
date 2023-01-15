@@ -41,8 +41,8 @@ const ArticlePage = component$<ArticlePageProps>(() => {
             {model && (
               <>
                 <div class="mx-auto max-w-3xl px-4 text-center">
-                  <h1 class="pb-4 font-bold text-2xl">{model.title}</h1>
-                  <div class="pb-8 font-medium text-lg">
+                  <h1 class="pb-4 text-2xl font-bold">{model.title}</h1>
+                  <div class="pb-8 text-lg font-medium">
                     <time dateTime={formatDateISO(model.date)}>{formatDate(model.date)}</time>
                   </div>
                 </div>

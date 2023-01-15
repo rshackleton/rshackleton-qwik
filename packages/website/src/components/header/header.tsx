@@ -6,8 +6,8 @@ export type HeaderProps = {};
 
 export const Header = component$<HeaderProps>(() => {
   return (
-    <header class="flex flex-col items-center px-4 py-12 text-neutral-800 text-base">
-      <Link class="inline-block pb-4 font-bold underline-offset-4 text-xl hover:underline" href="/">
+    <header class="flex flex-col items-center px-4 py-12 text-base text-neutral-800">
+      <Link class="inline-block pb-4 text-xl font-bold underline-offset-4 hover:underline" href="/">
         Richard Shackleton
       </Link>
       <Navigation />
