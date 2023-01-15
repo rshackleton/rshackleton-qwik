@@ -14,10 +14,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "types": ["node", "vite/client"],
-    "jsx": "preserve",
-    "paths": {
-      "~/*": ["./*"]
-    }
+    "jsx": "preserve"
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

@@ -1,19 +1,17 @@
+import { BlockElementIcon } from '@sanity/icons';
 import { SchemaTypeDefinition } from 'sanity';
 
 export default {
-  name: 'article',
-  title: 'Article',
-  type: 'document',
+  icon: BlockElementIcon,
+  name: 'hero',
+  title: 'Hero',
+  type: 'object',
   fields: [
     {
       name: 'title',
       title: 'Title',
       type: 'string',
-    },
-    {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
+      validation: (V) => V.required(),
     },
   ],
 } satisfies SchemaTypeDefinition;
