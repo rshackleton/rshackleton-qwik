@@ -1,35 +1,40 @@
 import { component$, Resource } from '@builder.io/qwik';
 import type { DocumentHead, RequestHandler } from '@builder.io/qwik-city';
 import { useEndpoint } from '@builder.io/qwik-city';
+import groq from 'groq';
 import { formatDate, formatDateISO } from '~/helpers/date';
+import client from '~/sanity/client';
 
 export type ArticlePageData = {
-  content: string;
+  content: any;
   date: string;
   title: string;
 };
 
-export type ArticlePageProps = {};
+export const onGet: RequestHandler<ArticlePageData> = async (event) => {
+  const query = groq`
+    *[_type == "article" && slug.current == $slug][0] {
+      content,
+      date,
+      title,
+    }
+  `;
 
-export const onGet: RequestHandler<ArticlePageData> = () => {
+  const result = await client.fetch(query, { slug: event.params.slug });
+
+  if (!result) {
+    event.response.status = 404;
+    return;
+  }
+
   return {
-    content: `
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    `,
-    date: `2019-11-29`,
-    title: `Gatsby Cloud & Kontent.ai - A match made in heaven?`,
+    content: result.content,
+    date: result.date,
+    title: result.title,
   };
 };
 
-const ArticlePage = component$<ArticlePageProps>(() => {
+const ArticlePage = component$(() => {
   const articleData = useEndpoint<ArticlePageData>();
 
   return (
@@ -48,7 +53,10 @@ const ArticlePage = component$<ArticlePageProps>(() => {
                 </div>
 
                 <div class="mx-auto max-w-3xl px-4">
-                  <div class="rich-text" dangerouslySetInnerHTML={model.content}></div>
+                  <div class="rich-text">TODO: Transform Sanity blocks to Qwik components.</div>
+                  <pre class="max-h-[640px] w-full overflow-auto">
+                    {JSON.stringify(model.content, null, 2)}
+                  </pre>
                 </div>
               </>
             )}
