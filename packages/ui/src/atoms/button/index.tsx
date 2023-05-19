@@ -1,8 +1,11 @@
 import { Slot, component$ } from '@builder.io/qwik';
+import { JSX } from '@builder.io/qwik/jsx-runtime';
 
-export const Button = component$(() => {
+export type ButtonProps = JSX.IntrinsicElements['button'];
+
+export const Button = component$((props: ButtonProps) => {
   return (
-    <button>
+    <button {...props}>
       <Slot />
     </button>
   );

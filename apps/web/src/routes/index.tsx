@@ -1,12 +1,23 @@
 import { component$ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
+import { DocumentHead, server$ } from '@builder.io/qwik-city';
 import { Button } from 'ui';
+
+const logOnServer = server$((message) => {
+  console.log(message);
+});
 
 export default component$(() => {
   return (
     <div>
       <h1>Test</h1>
-      <Button>Test</Button>
+      <Button
+        onClick$={async () => {
+          await logOnServer('test server');
+          console.log('test client');
+        }}
+      >
+        Test
+      </Button>
     </div>
   );
 });
