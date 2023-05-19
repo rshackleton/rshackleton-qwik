@@ -1,23 +1,22 @@
 import { component$ } from '@builder.io/qwik';
-import { DocumentHead, server$ } from '@builder.io/qwik-city';
-import { Button } from 'ui';
-
-const logOnServer = server$((message) => {
-  console.log(message);
-});
+import type { DocumentHead } from '@builder.io/qwik-city';
+import { ArticleList, Hero } from 'ui';
 
 export default component$(() => {
   return (
     <div>
-      <h1>Test</h1>
-      <Button
-        onClick$={async () => {
-          await logOnServer('test server');
-          console.log('test client');
+      <Hero
+        title="Full Stack Developer"
+        content="Hey, I am a full stack developer from Leeds, United Kingdom. 👋"
+      />
+      <ArticleList
+        cta={{
+          text: 'Check out the other articles',
+          url: '#',
         }}
-      >
-        Test
-      </Button>
+        items={[]}
+        title="Articles"
+      />
     </div>
   );
 });

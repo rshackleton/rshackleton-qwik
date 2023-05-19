@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom rich text */
+@layer base {
+  html {
+    @apply scroll-smooth bg-neutral-900 text-neutral-200;
+  }
+
+  .rich-text {
+    @apply text-left text-lg;
+
+    > * {
+      @apply mb-8;
+
+      &:is(h1, h2, h3, h4, h5, h6) {
+        @apply from-primary-400 to-primary-300 bg-gradient-to-r bg-clip-text text-xl font-bold text-transparent;
+      }
+
+      &:is(p) {
+        a {
+          @apply from-primary-400 to-primary-300 hover:border-primary-400 border-b-2 border-transparent bg-gradient-to-r bg-clip-text font-medium text-transparent transition;
+        }
+
+        b,
+        strong {
+          @apply font-medium;
+        }
+
+        code {
+          @apply inline rounded-md bg-neutral-700 px-2 py-1 font-mono font-normal text-neutral-100 shadow-sm;
+        }
+      }
+
+      &:is(ol, ul) {
+        @apply ml-6;
+
+        a {
+          @apply from-primary-400 to-primary-300 hover:border-primary-400 border-b-2 border-transparent bg-gradient-to-r bg-clip-text font-medium text-transparent transition;
+        }
+      }
+
+      &:is(ul) {
+        @apply list-disc;
+      }
+
+      &:is(ol) {
+        @apply list-decimal;
+      }
+
+      &:is(pre) {
+        @apply max-h-[min(1000px,80vh)] overflow-auto rounded p-4 text-base;
+
+        &::-webkit-scrollbar {
+          @apply h-2 w-2;
+        }
+
+        &::-webkit-scrollbar-track {
+        }
+
+        &::-webkit-scrollbar-thumb {
+          @apply rounded bg-neutral-300/50;
+        }
+      }
+    }
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    @apply from-primary-400 to-primary-300 bg-gradient-to-r bg-clip-text text-transparent;
+  }
+
+  .gradient-primary-hover {
+    @apply from-primary-400 to-primary-300 hover:border-primary-400 border-b-2 border-transparent bg-gradient-to-r bg-clip-text text-transparent transition-colors;
+  }
+}
