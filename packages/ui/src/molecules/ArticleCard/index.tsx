@@ -1,6 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import { formatDate } from '../../helpers/date';
-import { CtaModel } from '../../types';
+import type { CtaModel } from '../../types';
 import { TagList } from '../TagList';
 
 export type ArticleCardProps = {

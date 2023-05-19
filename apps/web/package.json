@@ -16,7 +16,7 @@
     "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --port 3000 --force",
     "fmt": "prettier --write .",
     "fmt.check": "prettier --check .",
-    "lint": "eslint \"src/**/*.ts*\"",
+    "lint": "eslint \"src/**/*.ts*\" --fix",
     "preview": "qwik build preview && vite preview --open --port 3000",
     "start": "vite --open --mode ssr --port 3000",
     "qwik": "qwik"

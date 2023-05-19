@@ -1,10 +1,8 @@
 import { component$ } from '@builder.io/qwik';
 import { Link } from '@builder.io/qwik-city';
-import {
-  ArticleCard,
-  ArticleCardProps,
-} from '../../molecules/ArticleCard/ArticleCard';
-import { CtaModel } from '../../types';
+import type { ArticleCardProps } from '../../molecules/ArticleCard';
+import { ArticleCard } from '../../molecules/ArticleCard';
+import type { CtaModel } from '../../types';
 
 type ArticleListProps = {
   anchorId?: string;
