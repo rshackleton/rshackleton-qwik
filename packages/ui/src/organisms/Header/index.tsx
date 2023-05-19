@@ -1,4 +1,5 @@
 import { component$ } from '@builder.io/qwik';
+import { Link } from '@builder.io/qwik-city';
 import github from '../../assets/github.svg?raw';
 import linkedin from '../../assets/linkedin.svg?raw';
 import twitter from '../../assets/twitter.svg?raw';
@@ -7,12 +8,12 @@ export const Header = component$(() => {
   return (
     <header class="bg-primary-900">
       <div class="mx-auto flex max-w-screen-xl flex-col items-center justify-between gap-x-4 gap-y-4 px-4 py-8 sm:flex-row sm:py-12">
-        <a
+        <Link
           class="inline-block text-2xl font-bold underline-offset-4 hover:underline"
           href="/"
         >
           Richard Shackleton
-        </a>
+        </Link>
 
         <ul class="flex items-center gap-x-4">
           <li>

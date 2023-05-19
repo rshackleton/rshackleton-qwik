@@ -1,4 +1,5 @@
 import { component$ } from '@builder.io/qwik';
+import { Link } from '@builder.io/qwik-city';
 import {
   ArticleCard,
   ArticleCardProps,
@@ -31,13 +32,13 @@ export const ArticleList = component$<ArticleListProps>(
         </ul>
         {cta && (
           <div class="mt-8 flex place-content-center place-items-center">
-            <a
+            <Link
               class="bg-primary-700 hover:bg-primary-600 inline-block scale-100 rounded py-3 px-5 text-base font-bold text-white subpixel-antialiased transition will-change-transform hover:scale-110"
               href={cta.url}
               target={cta.target}
             >
               {cta.text}
-            </a>
+            </Link>
           </div>
         )}
       </section>

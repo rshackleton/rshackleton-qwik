@@ -12,7 +12,7 @@ export default component$(() => {
       <ArticleList
         cta={{
           text: 'Check out the other articles',
-          url: '#',
+          url: '/articles',
         }}
         items={[]}
         title="Articles"
