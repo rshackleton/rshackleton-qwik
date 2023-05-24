@@ -1,12 +1,13 @@
 import { Slot, component$ } from '@builder.io/qwik';
 import { useDocumentHead } from '@builder.io/qwik-city';
+import { orderBy } from 'lodash';
 import { Hero } from 'ui';
 import { formatDate } from 'ui/src/helpers/date';
 
 export default component$(() => {
   const { title, frontmatter } = useDocumentHead();
 
-  const tags = [formatDate(frontmatter.date), ...(frontmatter.tags ?? [])];
+  const tags = [formatDate(frontmatter.date), ...orderBy(frontmatter.tags)];
 
   return (
     <div>

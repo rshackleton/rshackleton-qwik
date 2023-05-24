@@ -27,7 +27,7 @@ export default component$(() => {
             },
             date: item.date as string,
             summary: item.summary as string,
-            tags: item.tags as string[],
+            tags: orderBy(item.tags as string[]),
             title: item.title as string,
           })
         )}
