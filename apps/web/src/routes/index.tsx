@@ -42,11 +42,11 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: 'Welcome to Qwik',
+  title: `Full Stack Developer | Richard Shackleton`,
   meta: [
     {
       name: 'description',
-      content: 'Qwik site description',
+      content: `Richard Shackleton is a full stack developer from Leeds, United Kingdom.`,
     },
   ],
 };

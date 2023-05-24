@@ -1,4 +1,5 @@
 import { component$ } from '@builder.io/qwik';
+import { Link } from '@builder.io/qwik-city';
 import { TagList } from '../../molecules/TagList';
 import type { CtaModel } from '../../types';
 
@@ -13,6 +14,8 @@ type HeroProps = {
 
 export const Hero = component$<HeroProps>(
   ({ anchorId, content, cta, subtitle, tags, title }) => {
+    const LinkComponent = cta?.url.startsWith('/') ? Link : 'a';
+
     return (
       <section
         id={anchorId}
@@ -28,13 +31,13 @@ export const Hero = component$<HeroProps>(
           )}
           {content && <p class="mx-auto mt-5 max-w-prose text-lg">{content}</p>}
           {cta && cta.url && (
-            <a
+            <LinkComponent
               class="bg-primary-700 hover:bg-primary-600 mt-8 inline-block scale-100 rounded py-3 px-5 text-base font-bold text-white subpixel-antialiased transition will-change-transform hover:scale-110"
               href={cta.url}
               target={cta.target}
             >
               {cta.text}
-            </a>
+            </LinkComponent>
           )}
         </div>
       </section>

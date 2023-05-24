@@ -28,7 +28,7 @@ export default function mdxCollectionPlugin(): Plugin {
           const mdxPath = path.join(basePath, result);
           const slug = /.+\/(.+)\/index\.mdx$/.exec(result)?.[1] ?? '';
           const file = matter.read(mdxPath);
-          return { ...file.data, slug: `/${slug}` };
+          return { ...file.data, slug };
         });
 
         return `export const items = ${JSON.stringify(items)}`;

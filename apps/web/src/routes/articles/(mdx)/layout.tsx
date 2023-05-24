@@ -11,7 +11,7 @@ export default component$(() => {
 
   return (
     <div>
-      <Hero title={title} tags={tags} />
+      <Hero tags={tags} title={title} />
       <section class="rich-text mx-auto max-w-[80ch] px-4">
         <Slot />
       </section>

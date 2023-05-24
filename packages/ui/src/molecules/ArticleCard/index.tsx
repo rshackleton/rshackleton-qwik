@@ -1,4 +1,5 @@
 import { component$ } from '@builder.io/qwik';
+import { Link } from '@builder.io/qwik-city';
 import { formatDate } from '../../helpers/date';
 import type { CtaModel } from '../../types';
 import { TagList } from '../TagList';
@@ -14,9 +15,11 @@ export type ArticleCardProps = {
 
 export const ArticleCard = component$<ArticleCardProps>(
   ({ cta, date, summary, tags, title }) => {
+    const LinkComponent = cta.url.startsWith('/') ? Link : 'a';
+
     return (
-      <a
-        class="group/link outline-none"
+      <LinkComponent
+        class="group/link block outline-none"
         href={cta.url}
         target={cta.target}
         aria-label={cta.text}
@@ -32,7 +35,7 @@ export const ArticleCard = component$<ArticleCardProps>(
             </div>
           )}
         </article>
-      </a>
+      </LinkComponent>
     );
   }
 );
