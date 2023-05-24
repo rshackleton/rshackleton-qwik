@@ -1,5 +1,5 @@
 export interface CtaModel {
-  target?: '_self' | '_target';
+  target?: '_self' | '_blank';
   text: string;
   url: string;
 }
