@@ -3,9 +3,9 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import orderBy from 'lodash/orderBy';
 import { ArticleList, Hero } from 'ui';
 import type { ArticleCardProps } from 'ui/src/molecules/ArticleCard';
-import { items } from 'virtual:mdx-collection';
+import { collections } from 'virtual:mdx-collection';
 
-const ordered = orderBy(items, ['date'], ['desc']);
+const ordered = orderBy(collections.articles, ['date'], ['desc']);
 
 export default component$(() => {
   return (
@@ -16,7 +16,7 @@ export default component$(() => {
       />
       <ArticleList
         items={ordered.map(
-          (item): ArticleCardProps => ({
+          (item: any): ArticleCardProps => ({
             id: item.slug as string,
             cta: {
               text: '',

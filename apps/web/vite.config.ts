@@ -2,13 +2,20 @@ import { qwikCity } from '@builder.io/qwik-city/vite';
 import { qwikVite } from '@builder.io/qwik/optimizer';
 import path from 'node:path';
 import { defineConfig } from 'vite';
+import mdxCollections from 'vite-mdx-collections';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import mdxCollectionPlugin from './plugins/MdxCollectionPlugin';
 
 export default defineConfig(() => {
   return {
     plugins: [
-      mdxCollectionPlugin(),
+      mdxCollections({
+        collections: [
+          {
+            name: 'articles',
+            glob: './src/routes/articles/**/*.mdx',
+          },
+        ],
+      }),
       qwikCity({
         trailingSlash: false,
       }),

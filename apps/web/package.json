@@ -47,6 +47,7 @@
     "undici": "5.22.1",
     "vercel": "^29.1.1",
     "vite": "4.3.5",
+    "vite-mdx-collections": "workspace:*",
     "vite-tsconfig-paths": "4.2.0"
   }
 }

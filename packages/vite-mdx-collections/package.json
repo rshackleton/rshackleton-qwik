@@ -1,0 +1,47 @@
+{
+  "name": "vite-mdx-collections",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "exports": {
+    "import": "./dist/index.mjs",
+    "require": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "author": "rshackleton",
+  "repository": "rshackleton/rshackleton-qwik/packages/vite-mdx-collections",
+  "license": "MIT",
+  "scripts": {
+    "dev": "pnpm run build --watch",
+    "build": "tsup-node src/index.ts --sourcemap --dts --format cjs,esm",
+    "prepare": "pnpm run build"
+  },
+  "dependencies": {
+    "glob": "^10.2.6",
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "20.1.4",
+    "prettier": "2.8.8",
+    "tsup": "^6.7.0",
+    "typescript": "5.0.4",
+    "vite": "*"
+  },
+  "peerDependencies": {
+    "vite": "*"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    }
+  },
+  "keywords": [],
+  "files": [
+    "src",
+    "dist",
+    "module.d.ts"
+  ]
+}
