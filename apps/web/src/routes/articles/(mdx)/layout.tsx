@@ -1,6 +1,6 @@
 import { Slot, component$ } from '@builder.io/qwik';
 import { useDocumentHead } from '@builder.io/qwik-city';
-import { orderBy } from 'lodash';
+import orderBy from 'lodash/orderBy';
 import { Hero } from 'ui';
 import { formatDate } from 'ui/src/helpers/date';
 

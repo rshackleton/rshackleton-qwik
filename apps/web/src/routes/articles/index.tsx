@@ -3,9 +3,7 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import orderBy from 'lodash/orderBy';
 import { ArticleList, Hero } from 'ui';
 import type { ArticleCardProps } from 'ui/src/molecules/ArticleCard';
-import { collections } from 'virtual:mdx-collection';
-
-const ordered = orderBy(collections.articles, ['date'], ['desc']);
+import { articles } from '~/collections/articles';
 
 export default component$(() => {
   return (
@@ -15,7 +13,7 @@ export default component$(() => {
         content="My thoughts, guides and random code katas. 🧵👇"
       />
       <ArticleList
-        items={ordered.map(
+        items={articles.map(
           (item): ArticleCardProps => ({
             id: item.slug as string,
             cta: {

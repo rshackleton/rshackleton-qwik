@@ -1,11 +1,9 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
-import { orderBy } from 'lodash';
+import orderBy from 'lodash/orderBy';
 import { ArticleList, Hero } from 'ui';
 import type { ArticleCardProps } from 'ui/src/molecules/ArticleCard';
-import { collections } from 'virtual:mdx-collection';
-
-const ordered = orderBy(collections.articles, ['date'], ['desc']);
+import { articles } from '~/collections/articles';
 
 export default component$(() => {
   return (
@@ -19,7 +17,7 @@ export default component$(() => {
           text: 'Check out the other articles',
           url: '/articles',
         }}
-        items={ordered.slice(0, 5).map(
+        items={articles.slice(0, 5).map(
           (item): ArticleCardProps => ({
             id: item.slug as string,
             cta: {
