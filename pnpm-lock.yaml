@@ -22,6 +22,9 @@ importers:
       ui:
         specifier: workspace:*
         version: link:../../packages/ui
+      zod:
+        specifier: '*'
+        version: 3.21.4
     devDependencies:
       '@builder.io/qwik':
         specifier: ^1.1.4
@@ -155,6 +158,9 @@ importers:
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
+      zod-to-ts:
+        specifier: ^1.1.4
+        version: 1.1.4(typescript@5.0.4)(zod@3.21.4)
     devDependencies:
       '@types/node':
         specifier: 20.1.4
@@ -171,6 +177,9 @@ importers:
       vite:
         specifier: '*'
         version: 4.3.5(@types/node@20.1.4)(sass@1.62.1)
+      zod:
+        specifier: '*'
+        version: 3.21.4
 
 packages:
 
@@ -7902,7 +7911,6 @@ packages:
     resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}
     engines: {node: '>=12.20'}
     hasBin: true
-    dev: true
 
   /ufo@1.1.2:
     resolution: {integrity: sha512-TrY6DsjTQQgyS3E3dBaOXf0TpPD8u9FVrVYmKVegJuFw51n/YB9XPt+U6ydzFG5ZIN7+DIjPbNmXoBj9esYhgQ==}
@@ -8411,9 +8419,18 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /zod-to-ts@1.1.4(typescript@5.0.4)(zod@3.21.4):
+    resolution: {integrity: sha512-jsCg+pTNxLAdJOfW4ul+SpechdGYEJPPnssSbqWdR2LSIkotT22k+UvqPb1nEHwe/YbEcbUOlZUfGM0npgR+Jg==}
+    peerDependencies:
+      typescript: ^4.9.4 || ^5.0.2
+      zod: ^3
+    dependencies:
+      typescript: 5.0.4
+      zod: 3.21.4
+    dev: false
+
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
-    dev: true
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}

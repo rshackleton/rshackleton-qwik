@@ -21,20 +21,26 @@
   },
   "dependencies": {
     "glob": "^10.2.6",
-    "gray-matter": "^4.0.3"
+    "gray-matter": "^4.0.3",
+    "zod-to-ts": "^1.1.4"
   },
   "devDependencies": {
     "@types/node": "20.1.4",
     "prettier": "2.8.8",
     "tsup": "^6.7.0",
     "typescript": "5.0.4",
-    "vite": "*"
+    "vite": "*",
+    "zod": "*"
   },
   "peerDependencies": {
-    "vite": "*"
+    "vite": "*",
+    "zod": "*"
   },
   "peerDependenciesMeta": {
     "vite": {
+      "optional": true
+    },
+    "zod": {
       "optional": true
     }
   },

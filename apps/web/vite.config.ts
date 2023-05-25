@@ -4,6 +4,7 @@ import path from 'node:path';
 import { defineConfig } from 'vite';
 import mdxCollections from 'vite-mdx-collections';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { z } from 'zod';
 
 export default defineConfig(() => {
   return {
@@ -13,6 +14,14 @@ export default defineConfig(() => {
           {
             name: 'articles',
             glob: './src/routes/articles/**/*.mdx',
+            schema: z.object({
+              date: z.date(),
+              draft: z.boolean().default(false),
+              external: z.string().optional(),
+              summary: z.string(),
+              tags: z.array(z.string()).default([]),
+              title: z.string(),
+            }),
           },
         ],
       }),

@@ -16,19 +16,19 @@ export default component$(() => {
       />
       <ArticleList
         items={ordered.map(
-          (item: any): ArticleCardProps => ({
+          (item): ArticleCardProps => ({
             id: item.slug as string,
             cta: {
               text: '',
-              url: (item.external
-                ? item.external
+              url: (item.data.external
+                ? item.data.external
                 : `/articles/${item.slug}`) as string,
-              target: item.external ? '_blank' : '_self',
+              target: item.data.external ? '_blank' : '_self',
             },
-            date: item.date as string,
-            summary: item.summary as string,
-            tags: orderBy(item.tags as string[]),
-            title: item.title as string,
+            date: item.data.date,
+            summary: item.data.summary,
+            tags: orderBy(item.data.tags ?? []),
+            title: item.data.title,
           })
         )}
       />

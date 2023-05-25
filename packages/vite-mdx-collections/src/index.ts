@@ -1,12 +1,16 @@
 import { globSync } from 'glob';
 import matter from 'gray-matter';
+import { writeFileSync } from 'node:fs';
 import path from 'node:path';
 import type { Plugin } from 'vite';
+import { ZodSchema, z } from 'zod';
+import { createTypeAlias, printNode, zodToTs } from 'zod-to-ts';
 
 export type Options = {
   collections: {
     name: string;
     glob: string;
+    schema: ZodSchema;
   }[];
 };
 
@@ -19,6 +23,23 @@ export default function mdxCollectionPlugin(options: Options): Plugin {
 
   return {
     name: 'mdxCollectionPlugin',
+    buildStart() {
+      const CollectionsSchema = createCollectionSchema(options.collections);
+
+      const identifier = 'Collections';
+      const { node } = zodToTs(CollectionsSchema, identifier);
+      const typeAlias = createTypeAlias(node, identifier);
+
+      const typeString = printNode(typeAlias);
+
+      const output = `${typeString}
+
+declare module 'virtual:mdx-collection' {
+  export const collections: Collections;
+}`;
+
+      writeFileSync(path.join(process.cwd(), './src/collections.d.ts'), output);
+    },
     resolveId(id) {
       if (id === virtualModuleId) {
         return resolvedVirtualModuleId;
@@ -32,8 +53,8 @@ export default function mdxCollectionPlugin(options: Options): Plugin {
 
         const collections: Record<string, unknown[]> = {};
 
-        options.collections.forEach((collection) => {
-          const results = globSync(collection.glob, {
+        options.collections.forEach(({ glob, name, schema: baseSchema }) => {
+          const results = globSync(glob, {
             cwd: rootPath,
           });
 
@@ -41,16 +62,42 @@ export default function mdxCollectionPlugin(options: Options): Plugin {
             const mdxPath = path.join(rootPath, result);
             const slug = /.+\/(.+)\/index\.mdx$/.exec(result)?.[1] ?? '';
             const file = matter.read(mdxPath);
-            return { ...file.data, slug };
+
+            return { slug, data: file.data };
           });
 
-          collections[collection.name] = items;
+          collections[name] = items;
         });
 
-        return `export const collections = ${JSON.stringify(collections)}`;
+        const schema = createCollectionSchema(options.collections);
+
+        const parsed = schema.parse(collections);
+
+        return `export const collections = ${JSON.stringify(parsed)}`;
       }
 
       return null;
     },
   };
+}
+
+function createCollectionEntrySchema(schema: ZodSchema): ZodSchema {
+  return z.object({
+    data: schema,
+    slug: z.string(),
+  });
+}
+
+function createCollectionSchema(
+  collections: Options['collections']
+): ZodSchema {
+  let schema = z.object({});
+
+  collections.forEach(({ name, schema: baseSchema }) => {
+    schema = schema.extend({
+      [name]: z.array(createCollectionEntrySchema(baseSchema)),
+    });
+  });
+
+  return schema;
 }

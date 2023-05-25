@@ -8,9 +8,7 @@ export type ArticleSummaryProps = {
 };
 
 export const ArticleSummary = component$<ArticleSummaryProps>(({ slug }) => {
-  const item = collections.articles.find(
-    (item: any) => item.slug === slug
-  ) as any;
+  const item = collections.articles.find((item) => item.slug === slug);
 
   if (!item) {
     return null;
@@ -23,10 +21,10 @@ export const ArticleSummary = component$<ArticleSummaryProps>(({ slug }) => {
         text: '',
         url: `/articles/${slug}`,
       }}
-      date={formatDate(item.date as string)}
-      summary={item.summary as string}
-      tags={item.tags as string[]}
-      title={item.title as string}
+      date={formatDate(item.data.date)}
+      summary={item.data.summary}
+      tags={item.data.tags ?? []}
+      title={item.data.title}
     />
   );
 });

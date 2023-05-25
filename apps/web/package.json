@@ -23,7 +23,8 @@
   },
   "dependencies": {
     "lodash": "^4.17.21",
-    "ui": "workspace:*"
+    "ui": "workspace:*",
+    "zod": "*"
   },
   "devDependencies": {
     "@builder.io/qwik": "^1.1.4",
