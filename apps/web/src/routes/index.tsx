@@ -25,7 +25,7 @@ export default component$(() => {
               url: (item.data.external
                 ? item.data.external
                 : `/articles/${item.slug}`) as string,
-              target: item.data.external ? '_blank' : '_self',
+              target: item.data.external ? '_blank' : undefined,
             },
             date: item.data.date,
             summary: item.data.summary,
