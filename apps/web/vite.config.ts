@@ -9,7 +9,9 @@ export default defineConfig(() => {
   return {
     plugins: [
       mdxCollectionPlugin(),
-      qwikCity(),
+      qwikCity({
+        trailingSlash: false,
+      }),
       qwikVite({
         vendorRoots: [path.join(__dirname, '../../packages/ui/src')],
       }),
