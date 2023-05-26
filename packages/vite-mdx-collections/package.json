@@ -15,7 +15,6 @@
   "repository": "rshackleton/rshackleton-qwik/packages/vite-mdx-collections",
   "license": "MIT",
   "scripts": {
-    "dev": "pnpm run build --watch",
     "build": "tsup-node src/index.ts --sourcemap --dts --format cjs,esm",
     "prepare": "pnpm run build"
   },
